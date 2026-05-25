@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio | Estefanía Atehortua</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --panel-2: #1d2230;
+      --text: #f4f6fb;
+      --muted: #a9b2c3;
+      --line: rgba(255,255,255,.09);
+      --accent: #8b7bff;
+      --accent-2: #57d6c0;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(139,123,255,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(87,214,192,.12), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(15,17,21,.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: var(--shadow);
+      font-size: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 84px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      padding: 34px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 600;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.16);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-color: transparent;
+      color: #0d1020;
+    }
+
+    .btn-primary:hover { filter: brightness(1.03); }
+
+    .hero-side {
+      padding: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-panel {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+    }
+
+    .mini-panel h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .mini-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .section {
+      padding: 24px 0;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      margin: 0 0 14px;
+      letter-spacing: -.02em;
+    }
+
+    .section-subtitle {
+      margin: -6px 0 18px;
+      color: var(--muted);
+      max-width: 75ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card, .project-card, .exp-card {
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+    }
+
+    .skill-card h3, .project-card h3, .exp-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      padding: 8px 11px;
+      border-radius: 999px;
+      font-size: .9rem;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .project-meta {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-bottom: 12px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .project-links a {
+      padding: 10px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 600;
+      font-size: .92rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .exp-card .role {
+      color: var(--accent-2);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .exp-card .place {
+      color: var(--muted);
+      font-size: .93rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .contact-card {
+      padding: 24px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .contact-item {
+      padding: 14px 15px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 30px 0 46px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .94rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .grid-3, .projects, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero { padding-top: 48px; }
+      .hero-main, .hero-side, .skill-card, .project-card, .exp-card, .contact-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-badge">EA</div>
+        <div>Estefanía Atehortua</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#tecnologias">Tecnologías</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="card hero-main">
+          <div class="chip-row">
+            <span class="chip">Operaciones tecnológicas</span>
+            <span class="chip">Automatización</span>
+            <span class="chip">Power Platform</span>
+            <span class="chip">IA aplicada</span>
+          </div>
+          <h1>Portafolio profesional</h1>
+          <p class="subtitle">
+            Perfil junior orientado a automatización de procesos, documentación técnica, Microsoft 365 y soluciones internas con IA.
+            Experiencia real en operaciones, soporte y mejora de procesos.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
+            <a class="btn" href="#contacto">Contacto</a>
+            <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+
+        <aside class="card hero-side">
+          <div class="mini-panel">
+            <h3>Perfil</h3>
+            <p>Junior en transición hacia TI, automatización y análisis de procesos.</p>
+          </div>
+          <div class="mini-panel">
+            <h3>Fortalezas</h3>
+            <p>Documentación, KPIs, soporte operativo, flujos internos y comunicación con equipos.</p>
+          </div>
+          <div class="mini-panel">
+            <h3>En formación</h3>
+            <p>Tecnología en SaaS, Power BI, SQL básico, Power Automate y Copilot Studio.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="sobre-mi">
+      <h2 class="section-title">Sobre mí</h2>
+      <p class="section-subtitle">
+        Soy una profesional con experiencia en operaciones administrativas y tecnológicas, con foco en herramientas Microsoft, automatización,
+        documentación y mejora de procesos. Me interesa crear soluciones útiles y claras para equipos de trabajo.
+      </p>
+    </section>
+
+    <section class="section" id="tecnologias">
+      <h2 class="section-title">Tecnologías y herramientas</h2>
+      <div class="grid-3">
+        <article class="skill-card">
+          <h3>Microsoft 365</h3>
+          <p>Teams, SharePoint, OneDrive y Exchange Online en uso operativo y colaborativo.</p>
+          <div class="tag-list">
+            <span class="tag">Teams</span>
+            <span class="tag">SharePoint</span>
+            <span class="tag">OneDrive</span>
+            <span class="tag">Exchange</span>
+          </div>
+        </article>
+        <article class="skill-card">
+          <h3>Automatización</h3>
+          <p>Power Automate, Copilot Studio y flujos internos para apoyo operativo.</p>
+          <div class="tag-list">
+            <span class="tag">Power Automate</span>
+            <span class="tag">Copilot Studio</span>
+            <span class="tag">Workflows</span>
+          </div>
+        </article>
+        <article class="skill-card">
+          <h3>Análisis y documentación</h3>
+          <p>KPI, informes, bases de datos, manuales, procedimientos y seguimiento de incidencias.</p>
+          <div class="tag-list">
+            <span class="tag">KPIs</span>
+            <span class="tag">Excel</span>
+            <span class="tag">Documentación</span>
+            <span class="tag">Reportes</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="proyectos">
+      <h2 class="section-title">Proyectos destacados</h2>
+      <div class="projects">
+        <article class="project-card">
+          <div class="project-meta">HTML · Chart.js · GitHub Pages</div>
+          <h3>Dashboard KPI</h3>
+          <p>Panel visual para seguimiento de métricas operativas y presentación clara de información clave.</p>
+          <div class="project-links">
+            <a href="#">Ver proyecto</a>
+            <a href="#">Código</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta">Copilot Studio · Microsoft Teams</div>
+          <h3>Chatbot de capacitación</h3>
+          <p>Asistente interno para centralizar preguntas frecuentes y apoyar onboarding y formación del equipo.</p>
+          <div class="project-links">
+            <a href="#">Ver proyecto</a>
+            <a href="#">Detalles</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta">Power Automate · M365</div>
+          <h3>Automatización de flujos</h3>
+          <p>Mejoras en procesos repetitivos para reducir tiempos operativos y estandarizar tareas internas.</p>
+          <div class="project-links">
+            <a href="#">Ver proyecto</a>
+            <a href="#">Flujo</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-meta">Documentación técnica</div>
+          <h3>Manual operativo</h3>
+          <p>Guía estructurada de procesos, criterios y pasos de trabajo para apoyar consistencia operativa.</p>
+          <div class="project-links">
+            <a href="#">Ver proyecto</a>
+            <a href="#">PDF</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experiencia">
+      <h2 class="section-title">Experiencia</h2>
+      <div class="timeline">
+        <article class="exp-card">
+          <div class="role">Asistente de Operaciones · PRGX Global</div>
+          <div class="place">Marzo 2025 – actualidad</div>
+          <p>Chatbot de capacitación, automatización con Power Automate, gestión funcional de Microsoft 365, KPIs y soporte a proyectos internos.</p>
+        </article>
+        <article class="exp-card">
+          <div class="role">Asistente Administrativa con Perfil Analítico · Quind S.A.S</div>
+          <div class="place">Agosto 2023 – Octubre 2024</div>
+          <p>Datos, documentación, inventarios, informes operativos, coordinación de actividades y seguimiento de requerimientos.</p>
+        </article>
+        <article class="exp-card">
+          <div class="role">Asistente Administrativa TI · Sporty City</div>
+          <div class="place">Diciembre 2021 – Junio 2023</div>
+          <p>Inventarios tecnológicos, tickets, facturación, reportes y apoyo con proveedores tecnológicos.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <h2 class="section-title">Contacto</h2>
+      <div class="contact-grid">
+        <div class="card contact-card">
+          <p class="section-subtitle" style="margin-top:0;">Puedes personalizar estos enlaces con tus datos reales.</p>
+          <div class="contact-list">
+            <div class="contact-item">Correo: tu-correo@ejemplo.com</div>
+            <div class="contact-item">LinkedIn: linkedin.com/in/tuusuario</div>
+            <div class="contact-item">GitHub: github.com/tuusuario</div>
+            <div class="contact-item">Ciudad: Medellín, Colombia</div>
+          </div>
+        </div>
+        <div class="card contact-card">
+          <h3 style="margin-top:0;">Objetivo profesional</h3>
+          <p style="color:var(--muted); margin-bottom:0;">
+            Construir una trayectoria en automatización, análisis y soporte tecnológico, sumando experiencia práctica en herramientas Microsoft y soluciones de IA aplicadas a procesos.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Hecho con HTML, CSS y GitHub Pages.
+  </footer>
+</body>
+</html>
